@@ -75,7 +75,7 @@
 #define NGX_HTTP_VHOST_TRAFFIC_STATUS_PROMETHEUS_FMT_SERVER_CACHE_S            \
     "# HELP nginx_vts_server_cache_total The requests cache counter\n"         \
     "# TYPE nginx_vts_server_cache_total counter\n"
- 
+
 #define NGX_HTTP_VHOST_TRAFFIC_STATUS_PROMETHEUS_FMT_SERVER_CACHE              \
     "nginx_vts_server_cache_total{host=\"%V\",status=\"miss\"} %uA\n"          \
     "nginx_vts_server_cache_total{host=\"%V\",status=\"bypass\"} %uA\n"        \
@@ -143,7 +143,7 @@
 #define NGX_HTTP_VHOST_TRAFFIC_STATUS_PROMETHEUS_FMT_FILTER_CACHE_S            \
     "# HELP nginx_vts_filter_cache_total The requests cache counter\n"         \
     "# TYPE nginx_vts_filter_cache_total counter\n"
- 
+
 #define NGX_HTTP_VHOST_TRAFFIC_STATUS_PROMETHEUS_FMT_FILTER_CACHE              \
     "nginx_vts_filter_cache_total{filter=\"%V\",filter_name=\"%V\","           \
     "status=\"miss\"} %uA\n"                                                   \
@@ -281,10 +281,13 @@ u_char *ngx_http_vhost_traffic_status_display_prometheus_set_filter(
 u_char *ngx_http_vhost_traffic_status_display_prometheus_set_upstream_node(
     ngx_http_request_t *r,
     u_char *buf, ngx_str_t *key,
-    ngx_http_vhost_traffic_status_node_t *vtsn);
-u_char *ngx_http_vhost_traffic_status_display_prometheus_set_upstream(
+    ngx_http_vhost_traffic_status_node_t *vtsn,
+    unsigned type);
+u_char *ngx_http_vhost_traffic_status_display_prometheus_set_upstream_alone(
     ngx_http_request_t *r, u_char *buf,
     ngx_rbtree_node_t *node);
+u_char *ngx_http_vhost_traffic_status_display_prometheus_set_upstream_group(
+    ngx_http_request_t *r, u_char *buf);
 
 #if (NGX_HTTP_CACHE)
 u_char *ngx_http_vhost_traffic_status_display_prometheus_set_cache_node(
